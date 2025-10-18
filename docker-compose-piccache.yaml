@@ -1,0 +1,17 @@
+services:
+    freshrss:
+        restart: always
+        logging:
+            options:
+                max-size: 10m
+        ports:
+            - 3001:80
+        environment:
+            - TZ=Asia/Shanghai
+            - CRON_MIN=10,50
+#            - CRON_MIN=disabled
+        volumes:
+            - ./freshrss_data:/var/www/FreshRSS/data
+            - ./freshrss_extensions:/var/www/FreshRSS/extensions
+        container_name: freshrss
+        image: fitzroyzeng/freshrss:piccache
